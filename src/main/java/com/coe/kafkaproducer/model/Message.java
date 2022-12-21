@@ -7,7 +7,7 @@ import java.util.Date;
 public class Message {
 
     private int messageId;
-    private Contact fromContact;
+    private Contact fromNumber;
     private String messageText;
     private Date sentDatetime;
     private Conversation conversation;
@@ -15,9 +15,9 @@ public class Message {
 
     public Message(){}
 
-    public Message(int messageId, Contact fromContact, String messageText, Date sentDatetime, Conversation conversation) {
+    public Message(int messageId, Contact fromNumber, String messageText, Date sentDatetime, Conversation conversation) {
         this.messageId = messageId;
-        this.fromContact = fromContact;
+        this.fromNumber = fromNumber;
         this.messageText = messageText;
         this.sentDatetime = sentDatetime;
         this.conversation = conversation;

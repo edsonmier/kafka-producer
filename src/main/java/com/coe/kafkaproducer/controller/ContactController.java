@@ -33,5 +33,4 @@ public class ContactController {
         kafkaContactIdTemplate.send("contact-delete-topic",contactId);
         return "Contact deleted successfully";
     }
-
 }

@@ -26,6 +26,4 @@ public class Contact implements Serializable {
         this.phoneNumber = phoneNumber;
         this.status = status;
     }
-
-
 }
