@@ -22,10 +22,12 @@ public class GroupMemberController {
         return "GroupMember sent successfully";
     }
 
-    @PutMapping("")
-    public String updateGroupMember(@RequestBody GroupMember groupMember){
-        if (groupMember.getGroupMemberId() <= 0){
-            return "GroupMember ID can not be null or 0";}
+    @PutMapping("/{groupMemberId}")
+    public String updateGroupMember(@PathVariable int groupMemberId, @RequestBody GroupMember groupMember){
+        if (groupMemberId <= 0){
+            return "GroupMember ID can not be null or 0";
+        }
+        groupMember.setGroupMemberId(groupMemberId);
         kafkaGroupMemberTemplate.send("groupmember-update-topic",groupMember);
         return "GroupMember updated successfully";
     }

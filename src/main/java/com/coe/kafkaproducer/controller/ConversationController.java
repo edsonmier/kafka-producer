@@ -22,10 +22,12 @@ public class ConversationController {
         return "Conversation sent successfully";
     }
 
-    @PutMapping("")
-    public String updateConversation(@RequestBody Conversation conversation){
-        if (conversation.getConversationId() <= 0){
-            return "Conversation ID can not be null or 0";}
+    @PutMapping("/{conversationId}")
+    public String updateConversation(@PathVariable int conversationId, @RequestBody Conversation conversation){
+        if (conversationId <= 0){
+            return "Conversation ID can not be null or 0";
+        }
+        conversation.setConversationId(conversationId);
         kafkaConversationTemplate.send("conversation-update-topic",conversation);
         return "Conversation updated successfully";
     }

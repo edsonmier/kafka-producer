@@ -20,10 +20,12 @@ public class ContactController {
         return "Contact saved successfully";
     }
 
-    @PutMapping("")
-    public String updateContact(@RequestBody Contact contact){
-        if (contact.getContactId() <= 0){
-            return "Contact ID can not be null or 0";}
+    @PutMapping("/{contactId}")
+    public String updateContact(@PathVariable int contactId, @RequestBody Contact contact){
+        if (contactId <= 0){
+            return "Contact ID can not be null or 0";
+        }
+        contact.setContactId(contactId);
         kafkaContactTemplate.send("contact-update-topic",contact);
         return "Contact updated successfully";
     }

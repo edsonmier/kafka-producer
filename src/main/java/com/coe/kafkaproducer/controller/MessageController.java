@@ -22,10 +22,12 @@ public class MessageController {
         return "Message sent successfully";
     }
 
-    @PutMapping("")
-    public String updateMessage(@RequestBody Message message){
-        if (message.getMessageId() <= 0){
-            return "Message ID can not be null or 0";}
+    @PutMapping("/{messageId}")
+    public String updateMessage(@PathVariable int messageId, @RequestBody Message message){
+        if (messageId <= 0){
+            return "Message ID can not be null or 0";
+        }
+        message.setMessageId(messageId);
         kafkaMessageTemplate.send("message-update-topic",message);
         return "Message updated successfully";
     }
